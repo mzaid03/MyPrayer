@@ -100,6 +100,10 @@
     <h1>📚 Quran Quote of the Day</h1>
     <blockquote id="quote"></blockquote>
     <button onclick="refreshQuote()">New Quote</button>
+      <h1>💬 Quran Help Chat</h1>
+    <input id="userInput" type="text" placeholder="Type your problem here..." style="padding: 0.6rem; width: 90%; border: 1px solid #ccc; border-radius: 8px; margin-top: 1rem;">
+    <button onclick="getResponse()">Get Verse</button>
+    <blockquote id="chatResponse" style="margin-top: 1rem;"></blockquote>
   </div>
 
   <script>
@@ -152,6 +156,41 @@
     } else {
       alert("Please allow location access to get accurate prayer times.");
     }
-  </script>
+  const helpVerses = {
+  sadness: [
+    "So verily, with the hardship, there is relief. (94:6)",
+    "Do not lose hope, nor be sad. (3:139)",
+    "And He found you lost and guided [you]. (93:7)"
+  ],
+  fear: [
+    "Do not fear, I am with you all the time. (20:46)",
+    "Indeed, Allah is with those who fear Him. (16:128)"
+  ],
+  anxiety: [
+    "Verily, in the remembrance of Allah do hearts find rest. (13:28)",
+    "And whoever puts their trust in Allah, He will be enough for them. (65:3)"
+  ],
+  anger: [
+    "Those who restrain anger and pardon people. (3:134)"
+  ],
+  loneliness: [
+    "Indeed, Allah is with you wherever you are. (57:4)",
+    "And We are closer to him than [his] jugular vein. (50:16)"
+  ]
+};
+
+function getResponse() {
+  const input = document.getElementById("userInput").value.toLowerCase();
+  let response = "Sorry, I couldn't find a verse for that. Try another keyword like 'sadness', 'fear', 'anxiety', etc.";
+  for (const key in helpVerses) {
+    if (input.includes(key)) {
+      const verses = helpVerses[key];
+      response = verses[Math.floor(Math.random() * verses.length)];
+      break;
+    }
+  }
+  document.getElementById("chatResponse").innerText = response;
+}
+</script>
 </body>
 </html>
