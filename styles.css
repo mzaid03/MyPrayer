@@ -1,0 +1,27 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f3e9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+h1 {
+  color: #006400;
+}
+h2 {
+  color: #004d40;
+}
+blockquote {
+  font-style: italic;
+  background: #e0f2f1;
+  border-left: 5px solid #004d40;
+  margin: 20px;
+  padding: 10px;
+}
