@@ -91,18 +91,6 @@
   </div>
 
   <script>
-    const prayerTimes = {
-      fajr: "4:37 AM",
-      dhuhr: "12:15 PM",
-      asr: "3:50 PM",
-      maghrib: "7:25 PM",
-      isha: "8:45 PM"
-    };
-
-    for (let key in prayerTimes) {
-      document.getElementById(key).innerText = prayerTimes[key];
-    }
-
     const quotes = [
       "Indeed, prayer prohibits immorality and wrongdoing. (29:45)",
       "And establish prayer and give zakah. (2:43)",
@@ -119,6 +107,27 @@
     }
 
     refreshQuote();
+
+    // Get user's location and fetch prayer times
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`)
+          .then(response => response.json())
+          .then(data => {
+            const timings = data.data.timings;
+            document.getElementById("fajr").innerText = timings.Fajr;
+            document.getElementById("dhuhr").innerText = timings.Dhuhr;
+            document.getElementById("asr").innerText = timings.Asr;
+            document.getElementById("maghrib").innerText = timings.Maghrib;
+            document.getElementById("isha").innerText = timings.Isha;
+          });
+      });
+    } else {
+      alert("Please allow location access to get accurate prayer times.");
+    }
   </script>
 </body>
 </html>
