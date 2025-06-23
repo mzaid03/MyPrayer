@@ -119,12 +119,23 @@
           .then(response => response.json())
           .then(data => {
             const timings = data.data.timings;
-            document.getElementById("fajr").innerText = timings.Fajr;
-            document.getElementById("dhuhr").innerText = timings.Dhuhr;
-            document.getElementById("asr").innerText = timings.Asr;
-            document.getElementById("maghrib").innerText = timings.Maghrib;
-            document.getElementById("isha").innerText = timings.Isha;
+            function to12Hour(time24) {
+              const [hourStr, minute] = time24.split(":");
+              let hour = parseInt(hourStr);
+              const ampm = hour >= 12 ? 'PM' : 'AM';
+              hour = hour % 12 || 12;
+              return `${hour}:${minute} ${ampm}`;
+            }
+            document.getElementById("fajr").innerText = to12Hour(timings.Fajr);
+            document.getElementById("dhuhr").innerText = to12Hour(timings.Dhuhr);
+            document.getElementById("asr").innerText = to12Hour(timings.Asr);
+            document.getElementById("maghrib").innerText = to12Hour(timings.Maghrib);
+            document.getElementById("isha").innerText = to12Hour(timings.Isha);
             document.getElementById("timezone").innerText = `Your timezone: ${data.data.meta.timezone}`;
+          })
+          .catch(err => {
+            console.error("Failed to fetch prayer times:", err);
+            document.getElementById("timezone").innerText = "Could not load prayer times. Please refresh and allow location.";
           });
       });
     } else {
