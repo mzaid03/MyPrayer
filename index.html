@@ -100,21 +100,63 @@
     <h1>📚 Quran Quote of the Day</h1>
     <blockquote id="quote"></blockquote>
     <button onclick="refreshQuote()">New Quote</button>
-      <h1>💬 Quran Help Chat</h1>
-    <input id="userInput" type="text" placeholder="Type your problem here..." style="padding: 0.6rem; width: 90%; border: 1px solid #ccc; border-radius: 8px; margin-top: 1rem;">
-    <button onclick="getResponse()">Get Verse</button>
-    <blockquote id="chatResponse" style="margin-top: 1rem;"></blockquote>
   </div>
 
   <script>
     const quotes = [
-      "Indeed, prayer prohibits immorality and wrongdoing. (29:45)",
-      "And establish prayer and give zakah. (2:43)",
-      "Verily, in the remembrance of Allah do hearts find rest. (13:28)",
-      "Establish prayer at the decline of the sun. (17:78)",
-      "Successful indeed are the believers who are humble in their prayers. (23:1-2)",
-      "Indeed, Allah is with those who fear Him and those who are doers of good. (16:128)",
-      "And seek help through patience and prayer. (2:45)"
+        "Indeed, prayer prohibits immorality and wrongdoing. (29:45)",
+  "And establish prayer and give zakah. (2:43)",
+  "Verily, in the remembrance of Allah do hearts find rest. (13:28)",
+  "Establish prayer at the decline of the sun. (17:78)",
+  "Successful indeed are the believers who are humble in their prayers. (23:1-2)",
+  "Indeed, Allah is with those who fear Him and those who are doers of good. (16:128)",
+  "And seek help through patience and prayer. (2:45)",
+  "Indeed, Allah commands justice and the doing of good. (16:90)",
+  "He created the heavens and earth in truth. (39:5)",
+  "So remember Me; I will remember you. (2:152)",
+  "And whoever relies upon Allah – then He is sufficient for him. (65:3)",
+  "Say, 'Nothing will happen to us except what Allah has decreed for us.' (9:51)",
+  "So verily, with the hardship, there is relief. (94:6)",
+  "Your Lord has not forsaken you, nor has He detested [you]. (93:3)",
+  "And We have certainly created man and We know what his soul whispers to him. (50:16)",
+  "And We have not sent you, [O Muhammad], except as a mercy to the worlds. (21:107)",
+  "Indeed, Allah loves those who rely upon Him. (3:159)",
+  "Indeed, with hardship [will be] ease. (94:5)",
+  "Allah is the ally of those who believe. (2:257)",
+  "Say: My Lord has commanded justice. (7:29)",
+  "And be patient, for indeed, Allah does not allow to be lost the reward of those who do good. (11:115)",
+  "He knows what is [presently] before them and what will be after them. (20:110)",
+  "Indeed, the mercy of Allah is near to the doers of good. (7:56)",
+  "And whoever does righteous deeds, whether male or female, while being a believer – those will enter Paradise. (4:124)",
+  "Indeed, prayer has been decreed upon the believers a decree of specified times. (4:103)",
+  "Indeed, your Lord is vast in forgiveness. (53:32)",
+  "Say, 'In the bounty of Allah and in His mercy – in that let them rejoice.' (10:58)",
+  "And among His signs is that He created for you from yourselves mates that you may find tranquility in them. (30:21)",
+  "They are clothing for you and you are clothing for them. (2:187)",
+  "And We created you in pairs. (78:8)",
+"Your spouses are a garment for you. (2:187)",
+"And He placed between you affection and mercy. (30:21)",
+"And live with them in kindness. (4:19)",
+"It is He who created you from one soul and created from it its mate. (7:189)",
+"And Allah has made for you from your homes a place of rest. (16:80)",
+"And of everything We created two mates. (51:49)",
+"So do not weaken and do not grieve. (3:139)",
+"And We have certainly honored the children of Adam. (17:70)",
+"Indeed, the most noble of you in the sight of Allah is the most righteous of you. (49:13)",
+"And cooperate in righteousness and piety. (5:2)",
+"Indeed, Allah loves those who act justly. (5:42)",
+"Do not forget graciousness between you. (2:237)",
+"Speak to people good [words]. (2:83)",
+"And give the women [upon marriage] their [bridal] gifts graciously. (4:4)",
+"And consult with them in matters. (3:159)",
+"Indeed, the best of you are those who are best to their wives. (Hadith)",
+"And you will find the nearest of them in affection to the believers those who say, 'We are Christians.' (5:82)",
+"And those who say, 'Our Lord, grant us from among our wives and offspring comfort to our eyes.' (25:74)",
+"And lower to them the wing of humility out of mercy. (17:24)",
+"Worship Allah and associate nothing with Him, and to parents do good. (4:36)",
+"But if they endeavor to make you associate with Me that of which you have no knowledge, do not obey them but accompany them in [this] world with appropriate kindness. (31:15)",
+"And be patient over what they say and avoid them with gracious avoidance. (73:10)",
+"Indeed, the mercy of Allah is near to the doers of good. (7:56)"
     ];
 
     function refreshQuote() {
@@ -156,41 +198,6 @@
     } else {
       alert("Please allow location access to get accurate prayer times.");
     }
-  const helpVerses = {
-  sadness: [
-    "So verily, with the hardship, there is relief. (94:6)",
-    "Do not lose hope, nor be sad. (3:139)",
-    "And He found you lost and guided [you]. (93:7)"
-  ],
-  fear: [
-    "Do not fear, I am with you all the time. (20:46)",
-    "Indeed, Allah is with those who fear Him. (16:128)"
-  ],
-  anxiety: [
-    "Verily, in the remembrance of Allah do hearts find rest. (13:28)",
-    "And whoever puts their trust in Allah, He will be enough for them. (65:3)"
-  ],
-  anger: [
-    "Those who restrain anger and pardon people. (3:134)"
-  ],
-  loneliness: [
-    "Indeed, Allah is with you wherever you are. (57:4)",
-    "And We are closer to him than [his] jugular vein. (50:16)"
-  ]
-};
-
-function getResponse() {
-  const input = document.getElementById("userInput").value.toLowerCase();
-  let response = "Sorry, I couldn't find a verse for that. Try another keyword like 'sadness', 'fear', 'anxiety', etc.";
-  for (const key in helpVerses) {
-    if (input.includes(key)) {
-      const verses = helpVerses[key];
-      response = verses[Math.floor(Math.random() * verses.length)];
-      break;
-    }
-  }
-  document.getElementById("chatResponse").innerText = response;
-}
-</script>
+  </script>
 </body>
 </html>
