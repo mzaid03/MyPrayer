@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Prayer Reminder</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet">
   <style>
@@ -56,10 +56,6 @@
       background: #dcedc8;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
-    li:hover {
-      transform: scale(1.05);
-      background: #dcedc8;
-    }
     blockquote {
       background: #ede7f6;
       padding: 1rem;
@@ -104,7 +100,7 @@
 
   <script>
     const quotes = [
-        "Indeed, prayer prohibits immorality and wrongdoing. (29:45)",
+      "Indeed, prayer prohibits immorality and wrongdoing. (29:45)",
   "And establish prayer and give zakah. (2:43)",
   "Verily, in the remembrance of Allah do hearts find rest. (13:28)",
   "Establish prayer at the decline of the sun. (17:78)",
@@ -132,8 +128,8 @@
   "Indeed, your Lord is vast in forgiveness. (53:32)",
   "Say, 'In the bounty of Allah and in His mercy – in that let them rejoice.' (10:58)",
   "And among His signs is that He created for you from yourselves mates that you may find tranquility in them. (30:21)",
-  "They are clothing for you and you are clothing for them. (2:187)",
-  "And We created you in pairs. (78:8)",
+"They are clothing for you and you are clothing for them. (2:187)",
+"And We created you in pairs. (78:8)",
 "Your spouses are a garment for you. (2:187)",
 "And He placed between you affection and mercy. (30:21)",
 "And live with them in kindness. (4:19)",
@@ -166,7 +162,6 @@
 
     refreshQuote();
 
-    // Get user's location and fetch prayer times
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
@@ -176,6 +171,7 @@
           .then(response => response.json())
           .then(data => {
             const timings = data.data.timings;
+
             function to12Hour(time24) {
               const [hourStr, minute] = time24.split(":");
               let hour = parseInt(hourStr);
@@ -183,6 +179,7 @@
               hour = hour % 12 || 12;
               return `${hour}:${minute} ${ampm}`;
             }
+
             document.getElementById("fajr").innerText = to12Hour(timings.Fajr);
             document.getElementById("dhuhr").innerText = to12Hour(timings.Dhuhr);
             document.getElementById("asr").innerText = to12Hour(timings.Asr);
