@@ -85,6 +85,7 @@
       <li>Maghrib: <span id="maghrib"></span></li>
       <li>Isha: <span id="isha"></span></li>
     </ul>
+    <p id="timezone" style="font-size: 0.95rem; color: #666; margin-top: 1rem;"></p>
     <h1>📚 Quran Quote of the Day</h1>
     <blockquote id="quote"></blockquote>
     <button onclick="refreshQuote()">New Quote</button>
@@ -123,6 +124,7 @@
             document.getElementById("asr").innerText = timings.Asr;
             document.getElementById("maghrib").innerText = timings.Maghrib;
             document.getElementById("isha").innerText = timings.Isha;
+            document.getElementById("timezone").innerText = `Your timezone: ${data.data.meta.timezone}`;
           });
       });
     } else {
