@@ -76,6 +76,14 @@
     button:hover {
       background: #33691e;
     }
+    input {
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 70%;
+      max-width: 300px;
+      margin-bottom: 1rem;
+    }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -85,6 +93,10 @@
 <body>
   <div class="card">
     <h1>🌟 Prayer Times Today</h1>
+
+    <input type="text" id="zipInput" placeholder="Enter ZIP code or city..." />
+    <button onclick="fetchByZip()">Search</button>
+
     <ul>
       <li>Fajr: <span id="fajr"></span></li>
       <li>Dhuhr: <span id="dhuhr"></span></li>
@@ -92,14 +104,14 @@
       <li>Maghrib: <span id="maghrib"></span></li>
       <li>Isha: <span id="isha"></span></li>
     </ul>
-    <p id="timezone" style="font-size: 0.95rem; color: #666; margin-top: 1rem;"></p>
+    <p id="timezone" style="font-size: 0.95rem; color: #666;"></p>
     <h1>❤️ A Verse to Heal Your Heart</h1>
     <blockquote id="quote"></blockquote>
     <button onclick="refreshQuote()">New Quote</button>
   </div>
 
-  <script>
-    const quotes = [
+<script>
+const quotes = [
   "Indeed, prayer prohibits immorality and wrongdoing. (29:45)",
   "And establish prayer and give zakah. (2:43)",
   "Verily, in the remembrance of Allah do hearts find rest. (13:28)",
@@ -153,103 +165,123 @@
   "But if they endeavor to make you associate with Me that of which you have no knowledge, do not obey them but accompany them in [this] world with appropriate kindness. (31:15)",
   "And be patient over what they say and avoid them with gracious avoidance. (73:10)",
   "Indeed, the mercy of Allah is near to the doers of good. (7:56)"
-  ];
-
+];
 function refreshQuote() {
-    const quote = quotes[Math.floor(Math.random() * quotes.length)];
-    document.getElementById("quote").innerText = quote;
+  const quote = quotes[Math.floor(Math.random() * quotes.length)];
+  document.getElementById("quote").innerText = quote;
+}
+refreshQuote();
+
+const dhikr = ["SubhanAllah", "Alhamdulillah", "Allahu Akbar", "La ilaha illa Allah", "Astaghfirullah"];
+let currentDhikr = 0;
+setInterval(() => {
+  document.title = "🕊 " + dhikr[currentDhikr];
+  currentDhikr = (currentDhikr + 1) % dhikr.length;
+}, 5000);
+
+function to12Hour(time24) {
+  const [hourStr, minute] = time24.split(":");
+  let hour = parseInt(hourStr);
+  const ampm = hour >= 12 ? 'PM' : 'AM';
+  hour = hour % 12 || 12;
+  return `${hour}:${minute} ${ampm}`;
+}
+
+function getNextPrayer(prayerTimes) {
+  const now = new Date();
+  for (let [name, time] of Object.entries(prayerTimes)) {
+    const [h, m] = time.split(":");
+    const prayerDate = new Date(now);
+    prayerDate.setHours(parseInt(h), parseInt(m), 0);
+    if (prayerDate > now) return { name, time: prayerDate };
   }
+  return null;
+}
 
-  refreshQuote();
+function getPrayerTimes(lat, lon) {
+  fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`)
+    .then(response => response.json())
+    .then(data => {
+      const timings = data.data.timings;
+      const hijri = data.data.date.hijri;
 
-  const dhikr = ["SubhanAllah", "Alhamdulillah", "Allahu Akbar", "La ilaha illa Allah", "Astaghfirullah"];
-  let currentDhikr = 0;
-  setInterval(() => {
-    document.title = "🕊 " + dhikr[currentDhikr];
-    currentDhikr = (currentDhikr + 1) % dhikr.length;
-  }, 5000); // Changes every 5 seconds
+      document.getElementById("fajr").innerText = to12Hour(timings.Fajr);
+      document.getElementById("dhuhr").innerText = to12Hour(timings.Dhuhr);
+      document.getElementById("asr").innerText = to12Hour(timings.Asr);
+      document.getElementById("maghrib").innerText = to12Hour(timings.Maghrib);
+      document.getElementById("isha").innerText = to12Hour(timings.Isha);
+      document.getElementById("timezone").innerText = `🕓 Timezone: ${data.data.meta.timezone}`;
 
-  function to12Hour(time24) {
-    const [hourStr, minute] = time24.split(":");
-    let hour = parseInt(hourStr);
-    const ampm = hour >= 12 ? 'PM' : 'AM';
-    hour = hour % 12 || 12;
-    return `${hour}:${minute} ${ampm}`;
-  }
+      const hijriDate = `${hijri.day} ${hijri.month.en} ${hijri.year} AH`;
+      const hijriElement = document.createElement("p");
+      hijriElement.textContent = `📅 Islamic Date: ${hijriDate}`;
+      hijriElement.style.marginTop = "1rem";
+      hijriElement.style.fontSize = "0.95rem";
+      document.querySelector(".card").appendChild(hijriElement);
 
-  function getNextPrayer(prayerTimes) {
-    const now = new Date();
-    for (let [name, time] of Object.entries(prayerTimes)) {
-      const [h, m] = time.split(":");
-      const prayerDate = new Date(now);
-      prayerDate.setHours(parseInt(h), parseInt(m), 0);
-      if (prayerDate > now) return { name, time: prayerDate };
-    }
-    return null;
-  }
+      const prayerMap = {
+        Fajr: timings.Fajr,
+        Dhuhr: timings.Dhuhr,
+        Asr: timings.Asr,
+        Maghrib: timings.Maghrib,
+        Isha: timings.Isha
+      };
+      const next = getNextPrayer(prayerMap);
+      if (next) {
+        const countdownEl = document.createElement("p");
+        countdownEl.style.marginTop = "1rem";
+        countdownEl.style.fontSize = "0.95rem";
+        countdownEl.style.color = "#aeea00";
+        countdownEl.style.background = "rgba(0, 0, 0, 0.5)";
+        countdownEl.style.borderRadius = "8px";
+        countdownEl.style.padding = "6px 12px";
+        countdownEl.style.display = "inline-block";
+        document.querySelector(".card").appendChild(countdownEl);
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(position => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-
-      fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`)
-        .then(response => response.json())
-        .then(data => {
-          const timings = data.data.timings;
-          const hijri = data.data.date.hijri;
-
-          document.getElementById("fajr").innerText = to12Hour(timings.Fajr);
-          document.getElementById("dhuhr").innerText = to12Hour(timings.Dhuhr);
-          document.getElementById("asr").innerText = to12Hour(timings.Asr);
-          document.getElementById("maghrib").innerText = to12Hour(timings.Maghrib);
-          document.getElementById("isha").innerText = to12Hour(timings.Isha);
-          document.getElementById("timezone").innerText = `🕓 Timezone: ${data.data.meta.timezone}`;
-          
-          // Hijri date display
-          const hijriDate = `${hijri.day} ${hijri.month.en} ${hijri.year} AH`;
-          const hijriElement = document.createElement("p");
-          hijriElement.textContent = `📅 Islamic Date: ${hijriDate}`;
-          hijriElement.style.marginTop = "1rem";
-          hijriElement.style.fontSize = "0.95rem";
-          document.querySelector(".card").appendChild(hijriElement);
-
-          // Next prayer countdown
-          const prayerMap = {
-            Fajr: timings.Fajr,
-            Dhuhr: timings.Dhuhr,
-            Asr: timings.Asr,
-            Maghrib: timings.Maghrib,
-            Isha: timings.Isha
-          };
-          const next = getNextPrayer(prayerMap);
-          if (next) {
-            const countdownEl = document.createElement("p");
-            countdownEl.style.marginTop = "1rem";
-            countdownEl.style.fontSize = "0.95rem";
-            countdownEl.style.color = "#aeea00"; // Bright green
-            countdownEl.style.background = "rgba(0, 0, 0, 0.5)";
-            countdownEl.style.borderRadius = "8px";
-            countdownEl.style.padding = "6px 12px";
-            countdownEl.style.display = "inline-block";
-            document.querySelector(".card").appendChild(countdownEl);
-
-            setInterval(() => {
-              const now = new Date();
-              const diff = Math.max(0, Math.floor((next.time - now) / 1000));
-              const hrs = Math.floor(diff / 3600);
-              const mins = Math.floor((diff % 3600) / 60);
-              const secs = diff % 60;
-              countdownEl.textContent = `🕰 Next Prayer (${next.name}) in ${hrs}h ${mins}m ${secs}s`;
-            }, 1000);
-          }
-        })
-        .catch(err => {
-          console.error("Failed to fetch prayer times:", err);
-          document.getElementById("timezone").innerText = "Could not load prayer times. Please refresh and allow location.";
-        });
+        setInterval(() => {
+          const now = new Date();
+          const diff = Math.max(0, Math.floor((next.time - now) / 1000));
+          const hrs = Math.floor(diff / 3600);
+          const mins = Math.floor((diff % 3600) / 60);
+          const secs = diff % 60;
+          countdownEl.textContent = `🕰 Next Prayer (${next.name}) in ${hrs}h ${mins}m ${secs}s`;
+        }, 1000);
+      }
+    })
+    .catch(err => {
+      console.error("Failed to fetch prayer times:", err);
+      document.getElementById("timezone").innerText = "Could not load prayer times.";
     });
-  } else {
-    alert("Please allow location access to get accurate prayer times.");
-  }
+}
+
+function fetchByZip() {
+  const zip = document.getElementById("zipInput").value.trim();
+  if (!zip) return alert("Please enter a ZIP code or city.");
+
+  const apiKey = "YOUR_OPENCAGE_API_KEY"; // Replace this with your real API key
+  const geocodeURL = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(zip)}&key=${apiKey}`;
+
+  fetch(geocodeURL)
+    .then(res => res.json())
+    .then(data => {
+      if (data.results.length === 0) {
+        alert("Could not find location.");
+        return;
+      }
+      const { lat, lng } = data.results[0].geometry;
+      getPrayerTimes(lat, lng);
+    })
+    .catch(err => {
+      console.error("Geocoding error:", err);
+      alert("Failed to fetch location data.");
+    });
+}
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(pos => {
+    getPrayerTimes(pos.coords.latitude, pos.coords.longitude);
+  });
+}
 </script>
+</body>
+</html>
