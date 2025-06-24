@@ -258,18 +258,15 @@ function fetchByZip() {
   const zip = document.getElementById("zipInput").value.trim();
   if (!zip) return alert("Please enter a ZIP code or city.");
 
-  const apiKey = "YOUR_OPENCAGE_API_KEY"; // Replace this with your real API key
-  const geocodeURL = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(zip)}&key=${apiKey}`;
-
-  fetch(geocodeURL)
+  fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(zip)}&count=1`)
     .then(res => res.json())
     .then(data => {
-      if (data.results.length === 0) {
+      if (!data.results || data.results.length === 0) {
         alert("Could not find location.");
         return;
       }
-      const { lat, lng } = data.results[0].geometry;
-      getPrayerTimes(lat, lng);
+      const { latitude, longitude } = data.results[0];
+      getPrayerTimes(latitude, longitude);
     })
     .catch(err => {
       console.error("Geocoding error:", err);
@@ -283,5 +280,3 @@ if (navigator.geolocation) {
   });
 }
 </script>
-</body>
-</html>
