@@ -261,12 +261,16 @@ function getPrayerTimes(lat, lon) {
       document.getElementById("isha").innerText = to12Hour(timings.Isha);
       document.getElementById("timezone").innerText = `🕓 Timezone: ${data.data.meta.timezone}`;
 
-      const hijriDate = `${hijri.day} ${hijri.month.en} ${hijri.year} AH`;
-      const hijriElement = document.createElement("p");
-      hijriElement.textContent = `📅 Islamic Date: ${hijriDate}`;
-      hijriElement.style.marginTop = "1rem";
-      hijriElement.style.fontSize = "0.95rem";
-      document.querySelector(".card").appendChild(hijriElement);
+   const hijriDate = `${hijri.day} ${hijri.month.en} ${hijri.year} AH`;
+  const gregorianDate = new Date().toLocaleDateString('en-US', {
+  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  });
+  const dateElement = document.createElement("p");
+  dateElement.innerHTML = `📅 <strong>Islamic Date:</strong> ${hijriDate}<br>📆 <strong>Gregorian Date:</strong> ${gregorianDate}`;
+  dateElement.style.marginTop = "1rem";
+  dateElement.style.fontSize = "0.95rem";
+  document.querySelector(".card").appendChild(dateElement);
+
 
       const prayerMap = {
         Fajr: timings.Fajr,
