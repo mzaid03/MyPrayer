@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Prayer Reminder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tranquil Hearts</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet">
   <style>
     * {
@@ -13,29 +13,34 @@
     }
     body {
       font-family: 'Cairo', sans-serif;
-      background: linear-gradient(to bottom right, #e0f7fa, #e8f5e9);
-      color: #1b5e20;
+      background: linear-gradient(to bottom right, #1b5e20, #4caf50);
+      color: #fff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 2rem;
+      background-image: url('https://images.unsplash.com/photo-1611765082936-6329d1ffb7f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-attachment: fixed;
     }
     .card {
-      background: white;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
       padding: 2rem;
-      max-width: 500px;
+      max-width: 550px;
       width: 100%;
       text-align: center;
       animation: fadeIn 1s ease-in-out;
+      color: #fff;
     }
     h1 {
       font-size: 2rem;
       margin-bottom: 1rem;
-      color: #004d40;
+      color: #aeea00;
     }
     ul {
       list-style: none;
@@ -45,7 +50,7 @@
     li {
       margin: 0.5rem 0;
       font-size: 1.2rem;
-      background: #f1f8e9;
+      background: rgba(76, 175, 80, 0.2);
       border-radius: 12px;
       padding: 0.75rem;
       transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
@@ -53,20 +58,22 @@
     }
     li:hover {
       transform: scale(1.05);
-      background: #dcedc8;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      background: rgba(139, 195, 74, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
     blockquote {
-      background: #ede7f6;
+      background: rgba(255, 255, 255, 0.2);
       padding: 1rem;
-      border-left: 5px solid #673ab7;
+      border-left: 5px solid #cddc39;
       border-radius: 10px;
       font-style: italic;
+      color: #fff;
     }
     button {
-      margin-top: 1rem;
-      background: #1b5e20;
-      color: white;
+      margin: 0.5rem;
+      background: #66bb6a;
+      color: #003300;
+      font-weight: bold;
       padding: 0.7rem 1.5rem;
       border: none;
       border-radius: 10px;
@@ -74,7 +81,12 @@
       transition: background 0.3s;
     }
     button:hover {
-      background: #33691e;
+      background: #81c784;
+    }
+    #timezone {
+      font-size: 0.95rem;
+      color: #fff;
+      margin-top: 1rem;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
@@ -92,13 +104,18 @@
       <li>Maghrib: <span id="maghrib"></span></li>
       <li>Isha: <span id="isha"></span></li>
     </ul>
-    <p id="timezone" style="font-size: 0.95rem; color: #666; margin-top: 1rem;"></p>
-    <h1>❤️ A Verse to Heal Your Heart</h1>
+    <input type="text" id="zipInput" placeholder="Enter ZIP code" style="padding: 0.5rem; margin-bottom: 1rem; border-radius: 8px; border: 1px solid #ccc; width: 80%;">
+    <button onclick="getPrayerTimesByZip()">Get Prayer Times</button>
+    <p id="timezone"></p>
+    <h1>📖 A Verse You Needed Today</h1>
     <blockquote id="quote"></blockquote>
-    <button onclick="refreshQuote()">New Quote</button>
+    <div>
+      <button onclick="goBackQuote()">⬅️ Previous Quote</button>
+      <button onclick="refreshQuote()">🔄 New Quote</button>
+    </div>
+  <button onclick="window.open('https://www.learnaboutislam.net/how-to-pray-step-by-step/', '_blank')">🧎‍♂️ Learn How to Pray</button>
   </div>
-
-  <script>
+<script>
     const quotes = [
   "Indeed, prayer prohibits immorality and wrongdoing. (29:45)",
   "And establish prayer and give zakah. (2:43)",
@@ -153,103 +170,54 @@
   "But if they endeavor to make you associate with Me that of which you have no knowledge, do not obey them but accompany them in [this] world with appropriate kindness. (31:15)",
   "And be patient over what they say and avoid them with gracious avoidance. (73:10)",
   "Indeed, the mercy of Allah is near to the doers of good. (7:56)"
-  ];
+    ];
 
-function refreshQuote() {
-    const quote = quotes[Math.floor(Math.random() * quotes.length)];
-    document.getElementById("quote").innerText = quote;
-  }
+    let currentIndex = -1;
+    let previousIndex = -1;
 
-  refreshQuote();
-
-  const dhikr = ["SubhanAllah", "Alhamdulillah", "Allahu Akbar", "La ilaha illa Allah", "Astaghfirullah"];
-  let currentDhikr = 0;
-  setInterval(() => {
-    document.title = "🕊 " + dhikr[currentDhikr];
-    currentDhikr = (currentDhikr + 1) % dhikr.length;
-  }, 5000); // Changes every 5 seconds
-
-  function to12Hour(time24) {
-    const [hourStr, minute] = time24.split(":");
-    let hour = parseInt(hourStr);
-    const ampm = hour >= 12 ? 'PM' : 'AM';
-    hour = hour % 12 || 12;
-    return `${hour}:${minute} ${ampm}`;
-  }
-
-  function getNextPrayer(prayerTimes) {
-    const now = new Date();
-    for (let [name, time] of Object.entries(prayerTimes)) {
-      const [h, m] = time.split(":");
-      const prayerDate = new Date(now);
-      prayerDate.setHours(parseInt(h), parseInt(m), 0);
-      if (prayerDate > now) return { name, time: prayerDate };
+    function refreshQuote() {
+      previousIndex = currentIndex;
+      do {
+        currentIndex = Math.floor(Math.random() * quotes.length);
+      } while (currentIndex === previousIndex && quotes.length > 1);
+      document.getElementById("quote").innerText = quotes[currentIndex];
     }
-    return null;
-  }
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(position => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
+    function goBackQuote() {
+      if (previousIndex !== -1) {
+        [currentIndex, previousIndex] = [previousIndex, currentIndex];
+        document.getElementById("quote").innerText = quotes[currentIndex];
+      }
+    }
 
-      fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`)
-        .then(response => response.json())
-        .then(data => {
-          const timings = data.data.timings;
-          const hijri = data.data.date.hijri;
+    refreshQuote();
+  function getPrayerTimesByZip() {
+  const zip = document.getElementById("zipInput").value.trim();
+  if (!zip) return alert("Please enter a ZIP code.");
 
-          document.getElementById("fajr").innerText = to12Hour(timings.Fajr);
-          document.getElementById("dhuhr").innerText = to12Hour(timings.Dhuhr);
-          document.getElementById("asr").innerText = to12Hour(timings.Asr);
-          document.getElementById("maghrib").innerText = to12Hour(timings.Maghrib);
-          document.getElementById("isha").innerText = to12Hour(timings.Isha);
-          document.getElementById("timezone").innerText = `🕓 Timezone: ${data.data.meta.timezone}`;
-          
-          // Hijri date display
-          const hijriDate = `${hijri.day} ${hijri.month.en} ${hijri.year} AH`;
-          const hijriElement = document.createElement("p");
-          hijriElement.textContent = `📅 Islamic Date: ${hijriDate}`;
-          hijriElement.style.marginTop = "1rem";
-          hijriElement.style.fontSize = "0.95rem";
-          document.querySelector(".card").appendChild(hijriElement);
-
-          // Next prayer countdown
-          const prayerMap = {
-            Fajr: timings.Fajr,
-            Dhuhr: timings.Dhuhr,
-            Asr: timings.Asr,
-            Maghrib: timings.Maghrib,
-            Isha: timings.Isha
-          };
-          const next = getNextPrayer(prayerMap);
-          if (next) {
-            const countdownEl = document.createElement("p");
-            countdownEl.style.marginTop = "1rem";
-            countdownEl.style.fontSize = "0.95rem";
-            countdownEl.style.color = "#aeea00"; // Bright green
-            countdownEl.style.background = "rgba(0, 0, 0, 0.5)";
-            countdownEl.style.borderRadius = "8px";
-            countdownEl.style.padding = "6px 12px";
-            countdownEl.style.display = "inline-block";
-            document.querySelector(".card").appendChild(countdownEl);
-
-            setInterval(() => {
-              const now = new Date();
-              const diff = Math.max(0, Math.floor((next.time - now) / 1000));
-              const hrs = Math.floor(diff / 3600);
-              const mins = Math.floor((diff % 3600) / 60);
-              const secs = diff % 60;
-              countdownEl.textContent = `🕰 Next Prayer (${next.name}) in ${hrs}h ${mins}m ${secs}s`;
-            }, 1000);
-          }
-        })
-        .catch(err => {
-          console.error("Failed to fetch prayer times:", err);
-          document.getElementById("timezone").innerText = "Could not load prayer times. Please refresh and allow location.";
-        });
+  fetch(`https://nominatim.openstreetmap.org/search?format=json&postalcode=${zip}&country=us&limit=1`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.length) throw new Error("Location not found.");
+      const { lat, lon } = data[0];
+      return fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`);
+    })
+    .then(res => res.json())
+    .then(data => {
+      const timings = data.data.timings;
+      document.getElementById("fajr").innerText = to12Hour(timings.Fajr);
+      document.getElementById("dhuhr").innerText = to12Hour(timings.Dhuhr);
+      document.getElementById("asr").innerText = to12Hour(timings.Asr);
+      document.getElementById("maghrib").innerText = to12Hour(timings.Maghrib);
+      document.getElementById("isha").innerText = to12Hour(timings.Isha);
+      document.getElementById("timezone").innerText = `🕓 Timezone: ${data.data.meta.timezone}`;
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Could not find prayer times for that ZIP code.");
     });
-  } else {
-    alert("Please allow location access to get accurate prayer times.");
-  }
+}
+
 </script>
+</body>
+</html>
