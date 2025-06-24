@@ -105,6 +105,7 @@
       <li>Isha: <span id="isha"></span></li>
     </ul>
     <p id="timezone" style="font-size: 0.95rem; color: #666;"></p>
+    <p id="qibla" style="font-size: 0.95rem; color: #004d40; margin-top: 0.3rem;"></p>
     <h1>❤️ A Verse to Heal Your Heart</h1>
     <blockquote id="quote"></blockquote>
     <button onclick="refreshQuote()">New Quote</button>
@@ -256,6 +257,19 @@ function getPrayerTimes(lat, lon) {
       document.getElementById("timezone").innerText = "Could not load prayer times.";
     });
 }
+function getQiblaDirection(lat, lon) {
+  fetch(`https://api.aladhan.com/v1/qibla/${lat}/${lon}`)
+    .then(response => response.json())
+    .then(data => {
+      const direction = Math.round(data.data.direction);
+      document.getElementById("qibla").innerText = `🧭 Qibla Direction: ${direction}° from North`;
+    })
+    .catch(err => {
+      console.error("Qibla API error:", err);
+      document.getElementById("qibla").innerText = "Qibla direction not available.";
+    });
+}
+
 
 function fetchByZip() {
   const zip = document.getElementById("zipInput").value.trim();
@@ -270,6 +284,8 @@ function fetchByZip() {
       }
       const { latitude, longitude } = data.results[0];
       getPrayerTimes(latitude, longitude);
+      getQiblaDirection(latitude, longitude);
+
     })
     .catch(err => {
       console.error("Geocoding error:", err);
@@ -280,6 +296,7 @@ function fetchByZip() {
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(pos => {
     getPrayerTimes(pos.coords.latitude, pos.coords.longitude);
+    getQiblaDirection(pos.coords.latitude, pos.coords.longitude);
   });
 }
 document.getElementById("zipInput").addEventListener("keydown", function(event) {
