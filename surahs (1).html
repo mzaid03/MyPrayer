@@ -1,0 +1,963 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select a Surah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to bottom right, #e0f7fa, #e8f5e9);
+      color: #004d40;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+    }
+
+    .surah-btn {
+      padding: 0.6rem 1rem;
+      background: #ffffff;
+      border: 2px solid #004d40;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .surah-btn:hover {
+      background: #b2dfdb;
+    }
+  </style>
+</head>
+<body>
+  <h1>📖 Choose a Surah to Read</h1>
+  <div class="grid" id="surahGrid"></div>
+
+  <script>
+    const surahGrid = document.getElementById("surahGrid");
+    
+      const btn1 = document.createElement("button");
+      btn1.className = "surah-btn";
+      btn1.textContent = "1. Al-Fatiha";
+      btn1.onclick = () => {
+        window.location.href = `https://quran.com/1`;
+      };
+      surahGrid.appendChild(btn1);
+    
+      const btn2 = document.createElement("button");
+      btn2.className = "surah-btn";
+      btn2.textContent = "2. Al-Baqarah";
+      btn2.onclick = () => {
+        window.location.href = `https://quran.com/2`;
+      };
+      surahGrid.appendChild(btn2);
+    
+      const btn3 = document.createElement("button");
+      btn3.className = "surah-btn";
+      btn3.textContent = "3. Aal-Imran";
+      btn3.onclick = () => {
+        window.location.href = `https://quran.com/3`;
+      };
+      surahGrid.appendChild(btn3);
+    
+      const btn4 = document.createElement("button");
+      btn4.className = "surah-btn";
+      btn4.textContent = "4. An-Nisa";
+      btn4.onclick = () => {
+        window.location.href = `https://quran.com/4`;
+      };
+      surahGrid.appendChild(btn4);
+    
+      const btn5 = document.createElement("button");
+      btn5.className = "surah-btn";
+      btn5.textContent = "5. Al-Ma'idah";
+      btn5.onclick = () => {
+        window.location.href = `https://quran.com/5`;
+      };
+      surahGrid.appendChild(btn5);
+    
+      const btn6 = document.createElement("button");
+      btn6.className = "surah-btn";
+      btn6.textContent = "6. Al-An'am";
+      btn6.onclick = () => {
+        window.location.href = `https://quran.com/6`;
+      };
+      surahGrid.appendChild(btn6);
+    
+      const btn7 = document.createElement("button");
+      btn7.className = "surah-btn";
+      btn7.textContent = "7. Al-A'raf";
+      btn7.onclick = () => {
+        window.location.href = `https://quran.com/7`;
+      };
+      surahGrid.appendChild(btn7);
+    
+      const btn8 = document.createElement("button");
+      btn8.className = "surah-btn";
+      btn8.textContent = "8. Al-Anfal";
+      btn8.onclick = () => {
+        window.location.href = `https://quran.com/8`;
+      };
+      surahGrid.appendChild(btn8);
+    
+      const btn9 = document.createElement("button");
+      btn9.className = "surah-btn";
+      btn9.textContent = "9. At-Tawbah";
+      btn9.onclick = () => {
+        window.location.href = `https://quran.com/9`;
+      };
+      surahGrid.appendChild(btn9);
+    
+      const btn10 = document.createElement("button");
+      btn10.className = "surah-btn";
+      btn10.textContent = "10. Yunus";
+      btn10.onclick = () => {
+        window.location.href = `https://quran.com/10`;
+      };
+      surahGrid.appendChild(btn10);
+    
+      const btn11 = document.createElement("button");
+      btn11.className = "surah-btn";
+      btn11.textContent = "11. Hud";
+      btn11.onclick = () => {
+        window.location.href = `https://quran.com/11`;
+      };
+      surahGrid.appendChild(btn11);
+    
+      const btn12 = document.createElement("button");
+      btn12.className = "surah-btn";
+      btn12.textContent = "12. Yusuf";
+      btn12.onclick = () => {
+        window.location.href = `https://quran.com/12`;
+      };
+      surahGrid.appendChild(btn12);
+    
+      const btn13 = document.createElement("button");
+      btn13.className = "surah-btn";
+      btn13.textContent = "13. Ar-Ra'd";
+      btn13.onclick = () => {
+        window.location.href = `https://quran.com/13`;
+      };
+      surahGrid.appendChild(btn13);
+    
+      const btn14 = document.createElement("button");
+      btn14.className = "surah-btn";
+      btn14.textContent = "14. Ibrahim";
+      btn14.onclick = () => {
+        window.location.href = `https://quran.com/14`;
+      };
+      surahGrid.appendChild(btn14);
+    
+      const btn15 = document.createElement("button");
+      btn15.className = "surah-btn";
+      btn15.textContent = "15. Al-Hijr";
+      btn15.onclick = () => {
+        window.location.href = `https://quran.com/15`;
+      };
+      surahGrid.appendChild(btn15);
+    
+      const btn16 = document.createElement("button");
+      btn16.className = "surah-btn";
+      btn16.textContent = "16. An-Nahl";
+      btn16.onclick = () => {
+        window.location.href = `https://quran.com/16`;
+      };
+      surahGrid.appendChild(btn16);
+    
+      const btn17 = document.createElement("button");
+      btn17.className = "surah-btn";
+      btn17.textContent = "17. Al-Isra";
+      btn17.onclick = () => {
+        window.location.href = `https://quran.com/17`;
+      };
+      surahGrid.appendChild(btn17);
+    
+      const btn18 = document.createElement("button");
+      btn18.className = "surah-btn";
+      btn18.textContent = "18. Al-Kahf";
+      btn18.onclick = () => {
+        window.location.href = `https://quran.com/18`;
+      };
+      surahGrid.appendChild(btn18);
+    
+      const btn19 = document.createElement("button");
+      btn19.className = "surah-btn";
+      btn19.textContent = "19. Maryam";
+      btn19.onclick = () => {
+        window.location.href = `https://quran.com/19`;
+      };
+      surahGrid.appendChild(btn19);
+    
+      const btn20 = document.createElement("button");
+      btn20.className = "surah-btn";
+      btn20.textContent = "20. Ta-Ha";
+      btn20.onclick = () => {
+        window.location.href = `https://quran.com/20`;
+      };
+      surahGrid.appendChild(btn20);
+    
+      const btn21 = document.createElement("button");
+      btn21.className = "surah-btn";
+      btn21.textContent = "21. Al-Anbiya";
+      btn21.onclick = () => {
+        window.location.href = `https://quran.com/21`;
+      };
+      surahGrid.appendChild(btn21);
+    
+      const btn22 = document.createElement("button");
+      btn22.className = "surah-btn";
+      btn22.textContent = "22. Al-Hajj";
+      btn22.onclick = () => {
+        window.location.href = `https://quran.com/22`;
+      };
+      surahGrid.appendChild(btn22);
+    
+      const btn23 = document.createElement("button");
+      btn23.className = "surah-btn";
+      btn23.textContent = "23. Al-Mu’minun";
+      btn23.onclick = () => {
+        window.location.href = `https://quran.com/23`;
+      };
+      surahGrid.appendChild(btn23);
+    
+      const btn24 = document.createElement("button");
+      btn24.className = "surah-btn";
+      btn24.textContent = "24. An-Nur";
+      btn24.onclick = () => {
+        window.location.href = `https://quran.com/24`;
+      };
+      surahGrid.appendChild(btn24);
+    
+      const btn25 = document.createElement("button");
+      btn25.className = "surah-btn";
+      btn25.textContent = "25. Al-Furqan";
+      btn25.onclick = () => {
+        window.location.href = `https://quran.com/25`;
+      };
+      surahGrid.appendChild(btn25);
+    
+      const btn26 = document.createElement("button");
+      btn26.className = "surah-btn";
+      btn26.textContent = "26. Ash-Shu’ara";
+      btn26.onclick = () => {
+        window.location.href = `https://quran.com/26`;
+      };
+      surahGrid.appendChild(btn26);
+    
+      const btn27 = document.createElement("button");
+      btn27.className = "surah-btn";
+      btn27.textContent = "27. An-Naml";
+      btn27.onclick = () => {
+        window.location.href = `https://quran.com/27`;
+      };
+      surahGrid.appendChild(btn27);
+    
+      const btn28 = document.createElement("button");
+      btn28.className = "surah-btn";
+      btn28.textContent = "28. Al-Qasas";
+      btn28.onclick = () => {
+        window.location.href = `https://quran.com/28`;
+      };
+      surahGrid.appendChild(btn28);
+    
+      const btn29 = document.createElement("button");
+      btn29.className = "surah-btn";
+      btn29.textContent = "29. Al-Ankabut";
+      btn29.onclick = () => {
+        window.location.href = `https://quran.com/29`;
+      };
+      surahGrid.appendChild(btn29);
+    
+      const btn30 = document.createElement("button");
+      btn30.className = "surah-btn";
+      btn30.textContent = "30. Ar-Rum";
+      btn30.onclick = () => {
+        window.location.href = `https://quran.com/30`;
+      };
+      surahGrid.appendChild(btn30);
+    
+      const btn31 = document.createElement("button");
+      btn31.className = "surah-btn";
+      btn31.textContent = "31. Luqman";
+      btn31.onclick = () => {
+        window.location.href = `https://quran.com/31`;
+      };
+      surahGrid.appendChild(btn31);
+    
+      const btn32 = document.createElement("button");
+      btn32.className = "surah-btn";
+      btn32.textContent = "32. As-Sajda";
+      btn32.onclick = () => {
+        window.location.href = `https://quran.com/32`;
+      };
+      surahGrid.appendChild(btn32);
+    
+      const btn33 = document.createElement("button");
+      btn33.className = "surah-btn";
+      btn33.textContent = "33. Al-Ahzab";
+      btn33.onclick = () => {
+        window.location.href = `https://quran.com/33`;
+      };
+      surahGrid.appendChild(btn33);
+    
+      const btn34 = document.createElement("button");
+      btn34.className = "surah-btn";
+      btn34.textContent = "34. Saba";
+      btn34.onclick = () => {
+        window.location.href = `https://quran.com/34`;
+      };
+      surahGrid.appendChild(btn34);
+    
+      const btn35 = document.createElement("button");
+      btn35.className = "surah-btn";
+      btn35.textContent = "35. Fatir";
+      btn35.onclick = () => {
+        window.location.href = `https://quran.com/35`;
+      };
+      surahGrid.appendChild(btn35);
+    
+      const btn36 = document.createElement("button");
+      btn36.className = "surah-btn";
+      btn36.textContent = "36. Ya-Sin";
+      btn36.onclick = () => {
+        window.location.href = `https://quran.com/36`;
+      };
+      surahGrid.appendChild(btn36);
+    
+      const btn37 = document.createElement("button");
+      btn37.className = "surah-btn";
+      btn37.textContent = "37. As-Saffat";
+      btn37.onclick = () => {
+        window.location.href = `https://quran.com/37`;
+      };
+      surahGrid.appendChild(btn37);
+    
+      const btn38 = document.createElement("button");
+      btn38.className = "surah-btn";
+      btn38.textContent = "38. Sad";
+      btn38.onclick = () => {
+        window.location.href = `https://quran.com/38`;
+      };
+      surahGrid.appendChild(btn38);
+    
+      const btn39 = document.createElement("button");
+      btn39.className = "surah-btn";
+      btn39.textContent = "39. Az-Zumar";
+      btn39.onclick = () => {
+        window.location.href = `https://quran.com/39`;
+      };
+      surahGrid.appendChild(btn39);
+    
+      const btn40 = document.createElement("button");
+      btn40.className = "surah-btn";
+      btn40.textContent = "40. Ghafir";
+      btn40.onclick = () => {
+        window.location.href = `https://quran.com/40`;
+      };
+      surahGrid.appendChild(btn40);
+    
+      const btn41 = document.createElement("button");
+      btn41.className = "surah-btn";
+      btn41.textContent = "41. Fussilat";
+      btn41.onclick = () => {
+        window.location.href = `https://quran.com/41`;
+      };
+      surahGrid.appendChild(btn41);
+    
+      const btn42 = document.createElement("button");
+      btn42.className = "surah-btn";
+      btn42.textContent = "42. Ash-Shura";
+      btn42.onclick = () => {
+        window.location.href = `https://quran.com/42`;
+      };
+      surahGrid.appendChild(btn42);
+    
+      const btn43 = document.createElement("button");
+      btn43.className = "surah-btn";
+      btn43.textContent = "43. Az-Zukhruf";
+      btn43.onclick = () => {
+        window.location.href = `https://quran.com/43`;
+      };
+      surahGrid.appendChild(btn43);
+    
+      const btn44 = document.createElement("button");
+      btn44.className = "surah-btn";
+      btn44.textContent = "44. Ad-Dukhan";
+      btn44.onclick = () => {
+        window.location.href = `https://quran.com/44`;
+      };
+      surahGrid.appendChild(btn44);
+    
+      const btn45 = document.createElement("button");
+      btn45.className = "surah-btn";
+      btn45.textContent = "45. Al-Jathiyah";
+      btn45.onclick = () => {
+        window.location.href = `https://quran.com/45`;
+      };
+      surahGrid.appendChild(btn45);
+    
+      const btn46 = document.createElement("button");
+      btn46.className = "surah-btn";
+      btn46.textContent = "46. Al-Ahqaf";
+      btn46.onclick = () => {
+        window.location.href = `https://quran.com/46`;
+      };
+      surahGrid.appendChild(btn46);
+    
+      const btn47 = document.createElement("button");
+      btn47.className = "surah-btn";
+      btn47.textContent = "47. Muhammad";
+      btn47.onclick = () => {
+        window.location.href = `https://quran.com/47`;
+      };
+      surahGrid.appendChild(btn47);
+    
+      const btn48 = document.createElement("button");
+      btn48.className = "surah-btn";
+      btn48.textContent = "48. Al-Fath";
+      btn48.onclick = () => {
+        window.location.href = `https://quran.com/48`;
+      };
+      surahGrid.appendChild(btn48);
+    
+      const btn49 = document.createElement("button");
+      btn49.className = "surah-btn";
+      btn49.textContent = "49. Al-Hujurat";
+      btn49.onclick = () => {
+        window.location.href = `https://quran.com/49`;
+      };
+      surahGrid.appendChild(btn49);
+    
+      const btn50 = document.createElement("button");
+      btn50.className = "surah-btn";
+      btn50.textContent = "50. Qaf";
+      btn50.onclick = () => {
+        window.location.href = `https://quran.com/50`;
+      };
+      surahGrid.appendChild(btn50);
+    
+      const btn51 = document.createElement("button");
+      btn51.className = "surah-btn";
+      btn51.textContent = "51. Adh-Dhariyat";
+      btn51.onclick = () => {
+        window.location.href = `https://quran.com/51`;
+      };
+      surahGrid.appendChild(btn51);
+    
+      const btn52 = document.createElement("button");
+      btn52.className = "surah-btn";
+      btn52.textContent = "52. At-Tur";
+      btn52.onclick = () => {
+        window.location.href = `https://quran.com/52`;
+      };
+      surahGrid.appendChild(btn52);
+    
+      const btn53 = document.createElement("button");
+      btn53.className = "surah-btn";
+      btn53.textContent = "53. An-Najm";
+      btn53.onclick = () => {
+        window.location.href = `https://quran.com/53`;
+      };
+      surahGrid.appendChild(btn53);
+    
+      const btn54 = document.createElement("button");
+      btn54.className = "surah-btn";
+      btn54.textContent = "54. Al-Qamar";
+      btn54.onclick = () => {
+        window.location.href = `https://quran.com/54`;
+      };
+      surahGrid.appendChild(btn54);
+    
+      const btn55 = document.createElement("button");
+      btn55.className = "surah-btn";
+      btn55.textContent = "55. Ar-Rahman";
+      btn55.onclick = () => {
+        window.location.href = `https://quran.com/55`;
+      };
+      surahGrid.appendChild(btn55);
+    
+      const btn56 = document.createElement("button");
+      btn56.className = "surah-btn";
+      btn56.textContent = "56. Al-Waqi'a";
+      btn56.onclick = () => {
+        window.location.href = `https://quran.com/56`;
+      };
+      surahGrid.appendChild(btn56);
+    
+      const btn57 = document.createElement("button");
+      btn57.className = "surah-btn";
+      btn57.textContent = "57. Al-Hadid";
+      btn57.onclick = () => {
+        window.location.href = `https://quran.com/57`;
+      };
+      surahGrid.appendChild(btn57);
+    
+      const btn58 = document.createElement("button");
+      btn58.className = "surah-btn";
+      btn58.textContent = "58. Al-Mujadila";
+      btn58.onclick = () => {
+        window.location.href = `https://quran.com/58`;
+      };
+      surahGrid.appendChild(btn58);
+    
+      const btn59 = document.createElement("button");
+      btn59.className = "surah-btn";
+      btn59.textContent = "59. Al-Hashr";
+      btn59.onclick = () => {
+        window.location.href = `https://quran.com/59`;
+      };
+      surahGrid.appendChild(btn59);
+    
+      const btn60 = document.createElement("button");
+      btn60.className = "surah-btn";
+      btn60.textContent = "60. Al-Mumtahina";
+      btn60.onclick = () => {
+        window.location.href = `https://quran.com/60`;
+      };
+      surahGrid.appendChild(btn60);
+    
+      const btn61 = document.createElement("button");
+      btn61.className = "surah-btn";
+      btn61.textContent = "61. As-Saff";
+      btn61.onclick = () => {
+        window.location.href = `https://quran.com/61`;
+      };
+      surahGrid.appendChild(btn61);
+    
+      const btn62 = document.createElement("button");
+      btn62.className = "surah-btn";
+      btn62.textContent = "62. Al-Jumu'a";
+      btn62.onclick = () => {
+        window.location.href = `https://quran.com/62`;
+      };
+      surahGrid.appendChild(btn62);
+    
+      const btn63 = document.createElement("button");
+      btn63.className = "surah-btn";
+      btn63.textContent = "63. Al-Munafiqun";
+      btn63.onclick = () => {
+        window.location.href = `https://quran.com/63`;
+      };
+      surahGrid.appendChild(btn63);
+    
+      const btn64 = document.createElement("button");
+      btn64.className = "surah-btn";
+      btn64.textContent = "64. At-Taghabun";
+      btn64.onclick = () => {
+        window.location.href = `https://quran.com/64`;
+      };
+      surahGrid.appendChild(btn64);
+    
+      const btn65 = document.createElement("button");
+      btn65.className = "surah-btn";
+      btn65.textContent = "65. At-Talaq";
+      btn65.onclick = () => {
+        window.location.href = `https://quran.com/65`;
+      };
+      surahGrid.appendChild(btn65);
+    
+      const btn66 = document.createElement("button");
+      btn66.className = "surah-btn";
+      btn66.textContent = "66. At-Tahrim";
+      btn66.onclick = () => {
+        window.location.href = `https://quran.com/66`;
+      };
+      surahGrid.appendChild(btn66);
+    
+      const btn67 = document.createElement("button");
+      btn67.className = "surah-btn";
+      btn67.textContent = "67. Al-Mulk";
+      btn67.onclick = () => {
+        window.location.href = `https://quran.com/67`;
+      };
+      surahGrid.appendChild(btn67);
+    
+      const btn68 = document.createElement("button");
+      btn68.className = "surah-btn";
+      btn68.textContent = "68. Al-Qalam";
+      btn68.onclick = () => {
+        window.location.href = `https://quran.com/68`;
+      };
+      surahGrid.appendChild(btn68);
+    
+      const btn69 = document.createElement("button");
+      btn69.className = "surah-btn";
+      btn69.textContent = "69. Al-Haqqah";
+      btn69.onclick = () => {
+        window.location.href = `https://quran.com/69`;
+      };
+      surahGrid.appendChild(btn69);
+    
+      const btn70 = document.createElement("button");
+      btn70.className = "surah-btn";
+      btn70.textContent = "70. Al-Ma'arij";
+      btn70.onclick = () => {
+        window.location.href = `https://quran.com/70`;
+      };
+      surahGrid.appendChild(btn70);
+    
+      const btn71 = document.createElement("button");
+      btn71.className = "surah-btn";
+      btn71.textContent = "71. Nuh";
+      btn71.onclick = () => {
+        window.location.href = `https://quran.com/71`;
+      };
+      surahGrid.appendChild(btn71);
+    
+      const btn72 = document.createElement("button");
+      btn72.className = "surah-btn";
+      btn72.textContent = "72. Al-Jinn";
+      btn72.onclick = () => {
+        window.location.href = `https://quran.com/72`;
+      };
+      surahGrid.appendChild(btn72);
+    
+      const btn73 = document.createElement("button");
+      btn73.className = "surah-btn";
+      btn73.textContent = "73. Al-Muzzammil";
+      btn73.onclick = () => {
+        window.location.href = `https://quran.com/73`;
+      };
+      surahGrid.appendChild(btn73);
+    
+      const btn74 = document.createElement("button");
+      btn74.className = "surah-btn";
+      btn74.textContent = "74. Al-Muddaththir";
+      btn74.onclick = () => {
+        window.location.href = `https://quran.com/74`;
+      };
+      surahGrid.appendChild(btn74);
+    
+      const btn75 = document.createElement("button");
+      btn75.className = "surah-btn";
+      btn75.textContent = "75. Al-Qiyamah";
+      btn75.onclick = () => {
+        window.location.href = `https://quran.com/75`;
+      };
+      surahGrid.appendChild(btn75);
+    
+      const btn76 = document.createElement("button");
+      btn76.className = "surah-btn";
+      btn76.textContent = "76. Al-Insan";
+      btn76.onclick = () => {
+        window.location.href = `https://quran.com/76`;
+      };
+      surahGrid.appendChild(btn76);
+    
+      const btn77 = document.createElement("button");
+      btn77.className = "surah-btn";
+      btn77.textContent = "77. Al-Mursalat";
+      btn77.onclick = () => {
+        window.location.href = `https://quran.com/77`;
+      };
+      surahGrid.appendChild(btn77);
+    
+      const btn78 = document.createElement("button");
+      btn78.className = "surah-btn";
+      btn78.textContent = "78. An-Naba";
+      btn78.onclick = () => {
+        window.location.href = `https://quran.com/78`;
+      };
+      surahGrid.appendChild(btn78);
+    
+      const btn79 = document.createElement("button");
+      btn79.className = "surah-btn";
+      btn79.textContent = "79. An-Nazi'at";
+      btn79.onclick = () => {
+        window.location.href = `https://quran.com/79`;
+      };
+      surahGrid.appendChild(btn79);
+    
+      const btn80 = document.createElement("button");
+      btn80.className = "surah-btn";
+      btn80.textContent = "80. Abasa";
+      btn80.onclick = () => {
+        window.location.href = `https://quran.com/80`;
+      };
+      surahGrid.appendChild(btn80);
+    
+      const btn81 = document.createElement("button");
+      btn81.className = "surah-btn";
+      btn81.textContent = "81. At-Takwir";
+      btn81.onclick = () => {
+        window.location.href = `https://quran.com/81`;
+      };
+      surahGrid.appendChild(btn81);
+    
+      const btn82 = document.createElement("button");
+      btn82.className = "surah-btn";
+      btn82.textContent = "82. Al-Infitar";
+      btn82.onclick = () => {
+        window.location.href = `https://quran.com/82`;
+      };
+      surahGrid.appendChild(btn82);
+    
+      const btn83 = document.createElement("button");
+      btn83.className = "surah-btn";
+      btn83.textContent = "83. Al-Mutaffifin";
+      btn83.onclick = () => {
+        window.location.href = `https://quran.com/83`;
+      };
+      surahGrid.appendChild(btn83);
+    
+      const btn84 = document.createElement("button");
+      btn84.className = "surah-btn";
+      btn84.textContent = "84. Al-Inshiqaq";
+      btn84.onclick = () => {
+        window.location.href = `https://quran.com/84`;
+      };
+      surahGrid.appendChild(btn84);
+    
+      const btn85 = document.createElement("button");
+      btn85.className = "surah-btn";
+      btn85.textContent = "85. Al-Buruj";
+      btn85.onclick = () => {
+        window.location.href = `https://quran.com/85`;
+      };
+      surahGrid.appendChild(btn85);
+    
+      const btn86 = document.createElement("button");
+      btn86.className = "surah-btn";
+      btn86.textContent = "86. At-Tariq";
+      btn86.onclick = () => {
+        window.location.href = `https://quran.com/86`;
+      };
+      surahGrid.appendChild(btn86);
+    
+      const btn87 = document.createElement("button");
+      btn87.className = "surah-btn";
+      btn87.textContent = "87. Al-A'la";
+      btn87.onclick = () => {
+        window.location.href = `https://quran.com/87`;
+      };
+      surahGrid.appendChild(btn87);
+    
+      const btn88 = document.createElement("button");
+      btn88.className = "surah-btn";
+      btn88.textContent = "88. Al-Ghashiyah";
+      btn88.onclick = () => {
+        window.location.href = `https://quran.com/88`;
+      };
+      surahGrid.appendChild(btn88);
+    
+      const btn89 = document.createElement("button");
+      btn89.className = "surah-btn";
+      btn89.textContent = "89. Al-Fajr";
+      btn89.onclick = () => {
+        window.location.href = `https://quran.com/89`;
+      };
+      surahGrid.appendChild(btn89);
+    
+      const btn90 = document.createElement("button");
+      btn90.className = "surah-btn";
+      btn90.textContent = "90. Al-Balad";
+      btn90.onclick = () => {
+        window.location.href = `https://quran.com/90`;
+      };
+      surahGrid.appendChild(btn90);
+    
+      const btn91 = document.createElement("button");
+      btn91.className = "surah-btn";
+      btn91.textContent = "91. Ash-Shams";
+      btn91.onclick = () => {
+        window.location.href = `https://quran.com/91`;
+      };
+      surahGrid.appendChild(btn91);
+    
+      const btn92 = document.createElement("button");
+      btn92.className = "surah-btn";
+      btn92.textContent = "92. Al-Lail";
+      btn92.onclick = () => {
+        window.location.href = `https://quran.com/92`;
+      };
+      surahGrid.appendChild(btn92);
+    
+      const btn93 = document.createElement("button");
+      btn93.className = "surah-btn";
+      btn93.textContent = "93. Ad-Duhaa";
+      btn93.onclick = () => {
+        window.location.href = `https://quran.com/93`;
+      };
+      surahGrid.appendChild(btn93);
+    
+      const btn94 = document.createElement("button");
+      btn94.className = "surah-btn";
+      btn94.textContent = "94. Ash-Sharh";
+      btn94.onclick = () => {
+        window.location.href = `https://quran.com/94`;
+      };
+      surahGrid.appendChild(btn94);
+    
+      const btn95 = document.createElement("button");
+      btn95.className = "surah-btn";
+      btn95.textContent = "95. At-Tin";
+      btn95.onclick = () => {
+        window.location.href = `https://quran.com/95`;
+      };
+      surahGrid.appendChild(btn95);
+    
+      const btn96 = document.createElement("button");
+      btn96.className = "surah-btn";
+      btn96.textContent = "96. Al-'Alaq";
+      btn96.onclick = () => {
+        window.location.href = `https://quran.com/96`;
+      };
+      surahGrid.appendChild(btn96);
+    
+      const btn97 = document.createElement("button");
+      btn97.className = "surah-btn";
+      btn97.textContent = "97. Al-Qadr";
+      btn97.onclick = () => {
+        window.location.href = `https://quran.com/97`;
+      };
+      surahGrid.appendChild(btn97);
+    
+      const btn98 = document.createElement("button");
+      btn98.className = "surah-btn";
+      btn98.textContent = "98. Al-Bayyina";
+      btn98.onclick = () => {
+        window.location.href = `https://quran.com/98`;
+      };
+      surahGrid.appendChild(btn98);
+    
+      const btn99 = document.createElement("button");
+      btn99.className = "surah-btn";
+      btn99.textContent = "99. Az-Zalzalah";
+      btn99.onclick = () => {
+        window.location.href = `https://quran.com/99`;
+      };
+      surahGrid.appendChild(btn99);
+    
+      const btn100 = document.createElement("button");
+      btn100.className = "surah-btn";
+      btn100.textContent = "100. Al-'Adiyat";
+      btn100.onclick = () => {
+        window.location.href = `https://quran.com/100`;
+      };
+      surahGrid.appendChild(btn100);
+    
+      const btn101 = document.createElement("button");
+      btn101.className = "surah-btn";
+      btn101.textContent = "101. Al-Qari'ah";
+      btn101.onclick = () => {
+        window.location.href = `https://quran.com/101`;
+      };
+      surahGrid.appendChild(btn101);
+    
+      const btn102 = document.createElement("button");
+      btn102.className = "surah-btn";
+      btn102.textContent = "102. At-Takathur";
+      btn102.onclick = () => {
+        window.location.href = `https://quran.com/102`;
+      };
+      surahGrid.appendChild(btn102);
+    
+      const btn103 = document.createElement("button");
+      btn103.className = "surah-btn";
+      btn103.textContent = "103. Al-Asr";
+      btn103.onclick = () => {
+        window.location.href = `https://quran.com/103`;
+      };
+      surahGrid.appendChild(btn103);
+    
+      const btn104 = document.createElement("button");
+      btn104.className = "surah-btn";
+      btn104.textContent = "104. Al-Humazah";
+      btn104.onclick = () => {
+        window.location.href = `https://quran.com/104`;
+      };
+      surahGrid.appendChild(btn104);
+    
+      const btn105 = document.createElement("button");
+      btn105.className = "surah-btn";
+      btn105.textContent = "105. Al-Fil";
+      btn105.onclick = () => {
+        window.location.href = `https://quran.com/105`;
+      };
+      surahGrid.appendChild(btn105);
+    
+      const btn106 = document.createElement("button");
+      btn106.className = "surah-btn";
+      btn106.textContent = "106. Quraysh";
+      btn106.onclick = () => {
+        window.location.href = `https://quran.com/106`;
+      };
+      surahGrid.appendChild(btn106);
+    
+      const btn107 = document.createElement("button");
+      btn107.className = "surah-btn";
+      btn107.textContent = "107. Al-Ma'un";
+      btn107.onclick = () => {
+        window.location.href = `https://quran.com/107`;
+      };
+      surahGrid.appendChild(btn107);
+    
+      const btn108 = document.createElement("button");
+      btn108.className = "surah-btn";
+      btn108.textContent = "108. Al-Kawthar";
+      btn108.onclick = () => {
+        window.location.href = `https://quran.com/108`;
+      };
+      surahGrid.appendChild(btn108);
+    
+      const btn109 = document.createElement("button");
+      btn109.className = "surah-btn";
+      btn109.textContent = "109. Al-Kafirun";
+      btn109.onclick = () => {
+        window.location.href = `https://quran.com/109`;
+      };
+      surahGrid.appendChild(btn109);
+    
+      const btn110 = document.createElement("button");
+      btn110.className = "surah-btn";
+      btn110.textContent = "110. An-Nasr";
+      btn110.onclick = () => {
+        window.location.href = `https://quran.com/110`;
+      };
+      surahGrid.appendChild(btn110);
+    
+      const btn111 = document.createElement("button");
+      btn111.className = "surah-btn";
+      btn111.textContent = "111. Al-Masad";
+      btn111.onclick = () => {
+        window.location.href = `https://quran.com/111`;
+      };
+      surahGrid.appendChild(btn111);
+    
+      const btn112 = document.createElement("button");
+      btn112.className = "surah-btn";
+      btn112.textContent = "112. Al-Ikhlas";
+      btn112.onclick = () => {
+        window.location.href = `https://quran.com/112`;
+      };
+      surahGrid.appendChild(btn112);
+    
+      const btn113 = document.createElement("button");
+      btn113.className = "surah-btn";
+      btn113.textContent = "113. Al-Falaq";
+      btn113.onclick = () => {
+        window.location.href = `https://quran.com/113`;
+      };
+      surahGrid.appendChild(btn113);
+    
+      const btn114 = document.createElement("button");
+      btn114.className = "surah-btn";
+      btn114.textContent = "114. An-Nas";
+      btn114.onclick = () => {
+        window.location.href = `https://quran.com/114`;
+      };
+      surahGrid.appendChild(btn114);
+    
+  </script>
+</body>
+</html>
