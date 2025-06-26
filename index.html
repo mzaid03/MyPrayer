@@ -122,6 +122,92 @@ body.dark-mode button {
 body.dark-mode button:hover {
   background: #66bb6a;
 }
+#tracker-sidebar {
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  background: white;
+  color: #004d40;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  width: 200px;
+  z-index: 1000;
+  font-size: 0.95rem;
+}
+#tracker-sidebar h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+#tracker-sidebar label {
+  display: block;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+#tracker-sidebar button {
+  margin-top: 1rem;
+  background: #1b5e20;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#tracker-sidebar button:hover {
+  background: #33691e;
+}
+
+body.dark-mode #tracker-sidebar {
+  background: #2e2e2e;
+  color: #e0e0e0;
+}
+body.dark-mode #tracker-sidebar button {
+  background: #4caf50;
+}
+#tracker-sidebar {
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  background: white;
+  color: #004d40;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  width: 200px;
+  z-index: 1000;
+  font-size: 0.95rem;
+}
+#tracker-sidebar h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+#tracker-sidebar label {
+  display: block;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+#tracker-sidebar button {
+  margin-top: 1rem;
+  background: #1b5e20;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#tracker-sidebar button:hover {
+  background: #33691e;
+}
+
+body.dark-mode #tracker-sidebar {
+  background: #2e2e2e;
+  color: #e0e0e0;
+}
+body.dark-mode #tracker-sidebar button {
+  background: #4caf50;
+}
+
+
   </style>
 </head>
 <body>
@@ -133,6 +219,12 @@ body.dark-mode button:hover {
     La ilaha illallah Muhammadur Rasulullah
   </p>
   </div>
+  <!-- Left Sidebar Prayer Tracker -->
+<div id="tracker-sidebar">
+  <h3>📊 Prayer Tracker</h3>
+  <div id="prayer-tracker"></div>
+  <button onclick="resetTracker()">🔄 Reset</button>
+</div>
 
   <div class="card">
     <h1>🌟 Prayer Times Today</h1>
