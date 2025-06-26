@@ -206,7 +206,13 @@ body.dark-mode #tracker-sidebar {
 body.dark-mode #tracker-sidebar button {
   background: #4caf50;
 }
-
+.prayer-label {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Controls spacing between checkbox and text */
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+}
 
   </style>
 </head>
@@ -557,9 +563,9 @@ function renderTracker() {
   trackerContainer.innerHTML = prayers.map(prayer => {
     const checked = prayerStatus[prayer] ? "checked" : "";
     return `
-      <label>
+      <label class="prayer-label">
         <input type="checkbox" onchange="togglePrayer('${prayer}')" ${checked} />
-        ${prayer}
+        <span>${prayer}</span>
       </label>
     `;
   }).join("");
