@@ -246,29 +246,7 @@
     <blockquote id="quote"></blockquote>
     <button onclick="refreshQuote()">New Verse</button>
     <button onclick="shareQuote()">📤 Share Verse</button>
-    <h1>📿 Daily Duas</h1>
-    <button onclick="toggleDuaSection()">🕋 Show Duas</button>
-    <div id="dua-section" style="display:none; margin-top:1rem; text-align:left;">
-      <h3>📖 Ayatul Kursi (2:255)</h3>
-      <p style="font-family: 'Amiri', serif; font-size: 1.2rem; line-height: 2;">
-        ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَيُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي ٱلسَّمَاوَاتِ وَمَا فِي ٱلْأَرْضِ...
-        <br />
-        <em>(Translation): Allah! There is no deity except Him, the Ever-Living, the Sustainer of [all] existence…</em>
-      </p>
-      <h3>🌅 Morning & Evening Dhikr</h3>
-      <ul style="padding-left: 1rem;">
-        <li>اللَّهُمَّ أَجِرْنِي مِنَ النَّارِ (O Allah, save me from the Fire)</li>
-        <li>أَسْتَغْفِرُ اللَّهَ (I seek forgiveness from Allah)</li>
-        <li>اللَّهُمَّ أَنْتَ رَبِّي... (Sayyidul Istighfar)</li>
-      </ul>
-
-      <h3>😌 Before Sleep</h3>
-      <ul style="padding-left: 1rem;">
-        <li>اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا (In Your name I die and live)</li>
-        <li>Recite Ayatul Kursi</li>
-        <li>Surah Ikhlas, Falaq, Nas (3 times)</li>
-      </ul>
-    </div>
+    <button onclick="showAyatulKursi()">📖 Ayatul Kursi</button>
 
     <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
     <br />
@@ -588,8 +566,47 @@ function goToSurah(number) {
   window.open(`https://quran.com/${number}`, '_blank');
   closeSurahPopup();
 }
-function toggleDuaSection() {
-  const section = document.getElementById("dua-section");
-  section.style.display = section.style.display === "none" ? "block" : "none";
+function showAyatulKursi() {
+  const popup = document.createElement("div");
+  popup.id = "kursi-popup";
+  popup.style.position = "fixed";
+  popup.style.top = "50%";
+  popup.style.left = "50%";
+  popup.style.transform = "translate(-50%, -50%)";
+  popup.style.background = "white";
+  popup.style.color = "#004d40";
+  popup.style.padding = "1.5rem";
+  popup.style.borderRadius = "12px";
+  popup.style.boxShadow = "0 0 25px rgba(0,0,0,0.4)";
+  popup.style.zIndex = "10000";
+  popup.style.maxWidth = "90%";
+  popup.style.width = "400px";
+  popup.style.textAlign = "center";
+  popup.style.fontFamily = "'Amiri', serif";
+
+  popup.innerHTML = `
+    <h2 style="margin-bottom: 1rem;">📖 Ayatul Kursi (2:255)</h2>
+    <p style="font-size: 1.3rem; line-height: 2;">
+      ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَيُّ ٱلْقَيُّومُ ۚ 
+      لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ 
+      لَهُ مَا فِي ٱلسَّمَاوَاتِ وَمَا فِي ٱلْأَرْضِ ۗ 
+      مَن ذَا ٱلَّذِي يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ 
+      يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ 
+      وَلَا يُحِيطُونَ بِشَىْءٍۢ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ 
+      وَسِعَ كُرْسِيُّهُ ٱلسَّمَـٰوَاتِ وَٱلْأَرْضَ ۖ 
+      وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ 
+      وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ
+    </p>
+    <p style="margin-top: 1rem; font-size: 0.95rem; font-style: italic;">
+      “Allah! There is no deity except Him, the Ever-Living, the Sustainer of [all] existence…” (Surah Al-Baqarah 2:255)
+    </p>
+    <br>
+    <button onclick="document.getElementById('kursi-popup').remove()" style="background:#004d40; color:white; padding:8px 16px; border:none; border-radius:8px;">
+      Close
+    </button>
+  `;
+
+  document.body.appendChild(popup);
 }
+
 </script>
