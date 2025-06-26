@@ -353,18 +353,18 @@ function shareQuote() {
   const smsURL = `sms:?body=${encodedQuote}`;
 
   const shareOptions = `
-    <div id="share-popup" style="background:white; color:#004d40; padding:1rem; border-radius:12px; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
-    box-shadow: 0 0 15px rgba(0,0,0,0.3); z-index:9999; text-align:center; max-width: 90%; width: 300px;">
-      <h3 style="margin-bottom:1rem;">📤 Share this Verse</h3>
-      <a href="${whatsappURL}" target="_blank" style="display:block; margin:0.5rem 0;">📲 WhatsApp</a>
-      <a href="${twitterURL}" target="_blank" style="display:block; margin:0.5rem 0;">🐦 Twitter</a>
-      <a href="${facebookURL}" target="_blank" style="display:block; margin:0.5rem 0;">📘 Facebook</a>
-      <a href="${smsURL}" target="_blank" style="display:block; margin:0.5rem 0;">📱 Text Message</a>
-      <button onclick="copyToClipboard('${quoteText}')" style="margin-top:0.75rem; background:#a5d6a7; color:#004d40; padding:0.5rem 1rem; border:none; border-radius:8px;">📋 Copy for Instagram</button>
-      <br><br>
-      <button onclick="document.getElementById('share-popup').remove()" style="background:#004d40; color:white; padding:0.5rem 1rem; border:none; border-radius:8px;">Close</button>
-    </div>
-  `;
+  <div id="share-popup" style="background:white; color:#004d40; padding:1rem; border-radius:12px; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+  box-shadow: 0 0 15px rgba(0,0,0,0.3); z-index:9999; text-align:center; max-width: 90%; width: 300px;">
+    <h3 style="margin-bottom:1rem;">📤 Share this Verse</h3>
+    <a href="${whatsappURL}" target="_blank" style="display:block; margin:0.5rem 0;">📲 WhatsApp</a>
+    <a href="${twitterURL}" target="_blank" style="display:block; margin:0.5rem 0;">🐦 Twitter</a>
+    <a href="${facebookURL}" target="_blank" style="display:block; margin:0.5rem 0;">📘 Facebook</a>
+    <a href="${smsURL}" target="_blank" style="display:block; margin:0.5rem 0;">📱 Text Message</a>
+    <a href="https://www.instagram.com/" target="_blank" onclick="copyToClipboard('${quoteText}')" style="display:block; margin:0.5rem 0;">📷 Instagram (text copied)</a>
+    <br>
+    <button onclick="document.getElementById('share-popup').remove()" style="background:#004d40; color:white; padding:0.5rem 1rem; border:none; border-radius:8px;">Close</button>
+  </div>
+`;
   document.body.insertAdjacentHTML('beforeend', shareOptions);
 }
 
