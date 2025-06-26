@@ -221,7 +221,9 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
     }
-  
+    body.dark-mode #copyright {
+    color: #bbb;
+    }
   </style>
 </head>
 <body>
@@ -261,6 +263,9 @@
     <button onclick="openSurahPopup()">📖 The Quran</button>
     <br />
     <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+    <p id="copyright" style="margin-top: 2rem; font-size: 0.8rem; text-align: center; color: #888;">
+  © 2025 Mohammed Zaid. All rights reserved.
+</p>
 
   </div>
 
