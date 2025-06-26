@@ -213,63 +213,6 @@ body.dark-mode #tracker-sidebar button {
   margin-bottom: 0.5rem;
   white-space: nowrap;
 }
-#open-tracker-btn {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: #1b5e20;
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  cursor: pointer;
-  z-index: 1001;
-}
-
-#open-tracker-btn:hover {
-  background: #33691e;
-}
-
-#tracker-sidebar {
-  position: fixed;
-  top: 60px;
-  left: 20px;
-  background: white;
-  color: #004d40;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  width: 220px;
-  z-index: 1002;
-  font-size: 0.95rem;
-}
-
-#tracker-sidebar label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 0.5rem;
-  white-space: nowrap;
-}
-
-#tracker-sidebar button {
-  margin-top: 1rem;
-  background: #1b5e20;
-  color: white;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-body.dark-mode #tracker-sidebar {
-  background: #2e2e2e;
-  color: #e0e0e0;
-}
-body.dark-mode #tracker-sidebar button {
-  background: #4caf50;
-}
 
   </style>
 </head>
@@ -282,24 +225,8 @@ body.dark-mode #tracker-sidebar button {
     La ilaha illallah Muhammadur Rasulullah
   </p>
   </div>
-  <!-- Left Sidebar Prayer Tracker -->
-<div id="tracker-sidebar">
-  <h3>📊 Prayer Tracker</h3>
-  <div id="prayer-tracker"></div>
-  <button onclick="resetTracker()">🔄 Reset</button>
-</div>
-  <!-- 📊 Prayer Tracker Button & Sidebar -->
-<button id="open-tracker-btn">📊 Track Prayers</button>
 
-<div id="tracker-sidebar" style="display: none;">
-  <div style="display: flex; justify-content: space-between; align-items: center;">
-    <h3 style="margin: 0;">📊 Prayer Tracker</h3>
-    <button onclick="closeTracker()" style="background: transparent; border: none; font-size: 1.2rem; cursor: pointer;">❌</button>
-  </div>
-  <div id="prayer-tracker" style="margin-top: 1rem;"></div>
-  <button onclick="resetTracker()">🔄 Reset</button>
 </div>
-
   <div class="card">
     <h1>🌟 Prayer Times Today</h1>
 
@@ -622,46 +549,4 @@ function goToSurah(number) {
   window.open(`https://quran.com/${number}`, '_blank');
   closeSurahPopup();
 }
-const prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
-const trackerContainer = document.getElementById("prayer-tracker");
-const todayKey = "tracker-" + new Date().toISOString().split("T")[0];
-let prayerStatus = JSON.parse(localStorage.getItem(todayKey)) || {};
-
-function renderTracker() {
-  trackerContainer.innerHTML = prayers.map(prayer => {
-    const checked = prayerStatus[prayer] ? "checked" : "";
-    return `
-      <label>
-        <input type="checkbox" onchange="togglePrayer('${prayer}')" ${checked} />
-        ${prayer}
-      </label>
-    `;
-  }).join("");
-}
-
-function togglePrayer(prayer) {
-  prayerStatus[prayer] = !prayerStatus[prayer];
-  localStorage.setItem(todayKey, JSON.stringify(prayerStatus));
-}
-
-function resetTracker() {
-  localStorage.removeItem(todayKey);
-  prayerStatus = {};
-  renderTracker();
-}
-
-function closeTracker() {
-  document.getElementById("tracker-sidebar").style.display = "none";
-  document.getElementById("open-tracker-btn").style.display = "block";
-}
-
-document.getElementById("open-tracker-btn").addEventListener("click", () => {
-  document.getElementById("tracker-sidebar").style.display = "block";
-  document.getElementById("open-tracker-btn").style.display = "none";
-});
-
-window.togglePrayer = togglePrayer;
-renderTracker();
-
-
 </script>
