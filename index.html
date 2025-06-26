@@ -547,4 +547,35 @@ function goToSurah(number) {
   window.open(`https://quran.com/${number}`, '_blank');
   closeSurahPopup();
 }
+const prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+const trackerContainer = document.getElementById("prayer-tracker");
+const todayKey = "tracker-" + new Date().toISOString().split("T")[0];
+let prayerStatus = JSON.parse(localStorage.getItem(todayKey)) || {};
+
+function renderTracker() {
+  trackerContainer.innerHTML = prayers.map(prayer => {
+    const checked = prayerStatus[prayer] ? "checked" : "";
+    return `
+      <label>
+        <input type="checkbox" onchange="togglePrayer('${prayer}')" ${checked} />
+        ${prayer}
+      </label>
+    `;
+  }).join("");
+}
+
+function togglePrayer(prayer) {
+  prayerStatus[prayer] = !prayerStatus[prayer];
+  localStorage.setItem(todayKey, JSON.stringify(prayerStatus));
+}
+
+function resetTracker() {
+  localStorage.removeItem(todayKey);
+  prayerStatus = {};
+  renderTracker();
+}
+
+window.togglePrayer = togglePrayer;
+renderTracker();
+
 </script>
