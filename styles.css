@@ -1,70 +1,27 @@
-* { box-sizing: border-box; }
-html, body { height: 100%; }
+
 body {
-  font-family: 'Cairo', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  background: #f7f3e9;
+  color: #333;
   margin: 0;
-  color: #0f2f28;
-  background: linear-gradient(135deg, #e8f5f3 0%, #eef7f0 100%);
-  display: flex;
-  flex-direction: column;
+  padding: 0;
 }
-
-.app-header { text-align: center; padding: 1rem 1rem 0; }
-.app-header .shahada h2 { font-family: 'Amiri', serif; color: #0b5b4a; margin: 0; font-size: 1.6rem; }
-.app-header .shahada p { color: #0b5b4a; margin: 0.25rem 0 0; opacity: .9; }
-
-.app-main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; }
-
-.card {
-  width: 100%; max-width: 640px; background: #ffffff; border-radius: 18px;
-  box-shadow: 0 18px 50px rgba(16,43,36,0.12);
-  padding: 1.5rem; text-align: center; animation: fadeIn .7s ease both;
+.container {
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
 }
-
-h1 { font-size: 1.8rem; color: #0b5b4a; margin: 0 0 .75rem; }
-.section-title { font-size: 1.4rem; color: #0b5b4a; margin: 1.25rem 0 .5rem; }
-
-.input-row { display: flex; gap: .5rem; justify-content: center; margin-bottom: .75rem; }
-input#zipInput { padding: .7rem .9rem; border: 1px solid #cfe6e0; border-radius: 12px; width: 100%; max-width: 280px; outline: none; transition: border .2s, box-shadow .2s; }
-input#zipInput:focus { border-color: #0b5b4a; box-shadow: 0 0 0 3px rgba(11,91,74,0.12); }
-
-.btn { background: #0b5b4a; color: #fff; border: 0; padding: .7rem 1.1rem; border-radius: 12px; cursor: pointer; transition: transform .08s ease, background .2s ease, box-shadow .2s ease; }
-.btn:hover { background: #0d6e5a; box-shadow: 0 8px 18px rgba(11,91,74,0.2); }
-.btn:active { transform: translateY(1px); }
-.btn.primary { background: #127f66; }
-
-.button-row { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin-top: .5rem; }
-
-.prayer-list, ul { list-style: none; padding: 0; margin: 0 0 1rem; }
-.prayer-list li, li { display: flex; align-items: center; justify-content: space-between; gap: .75rem; background: #f3fbf9; border: 1px solid #e0f0ec; border-radius: 12px; padding: .75rem .9rem; margin: .4rem 0; transition: transform .18s ease, background .3s ease, box-shadow .3s ease; cursor: pointer; }
-.prayer-list li:hover { transform: translateY(-1px); box-shadow: 0 8px 18px rgba(16,43,36,0.08); }
-.prayer-list .label { font-weight: 700; color: #0b5b4a; }
-.prayer-list .time { font-variant-numeric: tabular-nums; min-width: 90px; text-align: right; }
-.prayer-list li.next-prayer { background: #e9fbf4; border-color: #bdeedc; box-shadow: 0 0 0 3px rgba(18,127,102,0.15); }
-
-.muted { color: #5a706b; font-size: .95rem; }
-.countdown { margin-top: .25rem; font-size: .95rem; color: #0b5b4a; background: #edf8f5; display: inline-block; padding: .4rem .6rem; border-radius: 10px; }
-
-blockquote { background: #f4f0ff; border-left: 5px solid #7f5bd6; border-radius: 10px; padding: 1rem; margin: .75rem 0; font-style: italic; color: #312b5a; }
-
-.li-tap { transform: scale(1.02); background: #e5f5ef; box-shadow: 0 6px 16px rgba(16,43,36,0.08); transition: transform .18s ease, background .3s ease, box-shadow .3s ease; }
-
-.app-footer { text-align: center; color: #6a7f79; font-size: .85rem; padding: 1rem; }
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-/* Dark mode */
-body.dark-mode { background: linear-gradient(135deg, #1e2a2a, #141818); color: #e9f6f3; }
-body.dark-mode .card { background: #202525; box-shadow: 0 18px 50px rgba(0,0,0,0.35); }
-body.dark-mode .prayer-list li { background: #242c2c; border-color: #2f3a3a; color: #e9f6f3; }
-body.dark-mode .prayer-list li.next-prayer { background: #223330; border-color: #2b4a43; box-shadow: 0 0 0 3px rgba(64,185,154,0.18); }
-body.dark-mode blockquote { background: #2c2c36; border-left-color: #9d86ff; color: #d9d7ff; }
-body.dark-mode .btn { background: #2f8f78; }
-body.dark-mode .btn:hover { background: #3aa18a; }
-body.dark-mode .countdown { background: #1f2a29; color: #b6f1e2; }
-body.dark-mode .app-footer { color: #aeb9b6; }
-
-@media (max-width: 420px) {
-  h1 { font-size: 1.5rem; }
-  .section-title { font-size: 1.2rem; }
+h1 {
+  color: #006400;
+}
+h2 {
+  color: #004d40;
+}
+blockquote {
+  font-style: italic;
+  background: #e0f2f1;
+  border-left: 5px solid #004d40;
+  margin: 20px;
+  padding: 10px;
 }
