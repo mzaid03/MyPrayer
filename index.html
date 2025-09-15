@@ -3,272 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#0b5b4a" />
   <title>Prayer Reminder</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: linear-gradient(to bottom right, #e0f7fa, #e8f5e9);
-      color: #1b5e20;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-    .card {
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      padding: 2rem;
-      max-width: 500px;
-      width: 100%;
-      text-align: center;
-      animation: fadeIn 1s ease-in-out;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #004d40;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 2rem;
-    }
-    li {
-      margin: 0.5rem 0;
-      font-size: 1.2rem;
-      background: #f1f8e9;
-      border-radius: 12px;
-      padding: 0.75rem;
-      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-    li:hover,
-    li:active {
-    transform: scale(1.05);
-    background: #dcedc8;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    blockquote {
-      background: #ede7f6;
-      padding: 1rem;
-      border-left: 5px solid #673ab7;
-      border-radius: 10px;
-      font-style: italic;
-    }
-    button {
-      margin-top: 1rem;
-      background: #1b5e20;
-      color: white;
-      padding: 0.7rem 1.5rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: #33691e;
-    }
-    input {
-      padding: 0.5rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      width: 70%;
-      max-width: 300px;
-      margin-bottom: 1rem;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    body.dark-mode {
-    background: linear-gradient(to bottom right, #263238, #1c1c1c);
-    color: #eeeeee;
-    }
-
-    body.dark-mode .card {
-    background: #2e2e2e;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    body.dark-mode li {
-    background: #37474f;
-    color: #fff;
-    }
-
-    body.dark-mode li:hover {
-      background: #455a64;
-    }
-
-    body.dark-mode blockquote {
-      background: #3e3e3e;
-      border-left-color: #9575cd;
-      color: #e0e0e0;
-    }
-
-    body.dark-mode button {
-      background: #4caf50;
-      color: white;
-    }
-
-    body.dark-mode button:hover {
-      background: #66bb6a;
-    }
-    #tracker-sidebar {
-      position: fixed;
-      top: 100px;
-      left: 20px;
-      background: white;
-      color: #004d40;
-      padding: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      width: 200px;
-      z-index: 1000;
-      font-size: 0.95rem;
-    }
-    #tracker-sidebar h3 {
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-    }
-    #tracker-sidebar label {
-      display: block;
-      margin-bottom: 0.5rem;
-      cursor: pointer;
-    }
-    #tracker-sidebar button {
-      margin-top: 1rem;
-      background: #1b5e20;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    #tracker-sidebar button:hover {
-      background: #33691e;
-    }
-
-    body.dark-mode #tracker-sidebar {
-      background: #2e2e2e;
-      color: #e0e0e0;
-    }
-    body.dark-mode #tracker-sidebar button {
-      background: #4caf50;
-    }
-    #tracker-sidebar {
-      position: fixed;
-      top: 100px;
-      left: 20px;
-      background: white;
-      color: #004d40;
-      padding: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      width: 200px;
-      z-index: 1000;
-      font-size: 0.95rem;
-    }
-    #tracker-sidebar h3 {
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-    }
-    #tracker-sidebar label {
-      display: block;
-      margin-bottom: 0.5rem;
-      cursor: pointer;
-    }
-    #tracker-sidebar button {
-      margin-top: 1rem;
-      background: #1b5e20;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    #tracker-sidebar button:hover {
-      background: #33691e;
-    }
-
-    body.dark-mode #tracker-sidebar {
-      background: #2e2e2e;
-      color: #e0e0e0;
-    }
-    body.dark-mode #tracker-sidebar button {
-      background: #4caf50;
-    }
-    .prayer-label {
-      display: flex;
-      align-items: center;
-      gap: 6px; /* Controls spacing between checkbox and text */
-      margin-bottom: 0.5rem;
-      white-space: nowrap;
-    }
-    .li-tap {
-    transform: scale(1.05);
-    background: #dcedc8;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-    }
-    body.dark-mode #copyright {
-    color: #bbb;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  
 </head>
 
 <body>
-  <div style="text-align: center; margin-bottom: 1rem;">
-  <h2 style="font-size: 1.5rem; font-family: 'Amiri', serif; color: #004d40;">
-    لَا إِلَٰهَ إِلَّا ٱللَّٰهُ مُحَمَّدٌ رَسُولُ ٱللَّٰهِ
-  </h2>
-  <p style="font-size: 1rem; color: #004d40;">
-    La ilaha illallah Muhammadur Rasulullah
-  </p>
-  </div>
-
-</div>
+  <header class="app-header">
+    <div class="shahada">
+      <h2>لَا إِلَٰهَ إِلَّا ٱللَّٰهُ مُحَمَّدٌ رَسُولُ ٱللَّٰهِ</h2>
+      <p>La ilaha illallah Muhammadur Rasulullah</p>
+    </div>
+  </header>
+  <main class="app-main">
   <div class="card">
     <h1>🌟 Prayer Times Today</h1>
 
-    <input type="text" id="zipInput" placeholder="Enter ZIP code or city..." />
-    <button onclick="fetchByZip()">Search</button>
+    <div class="input-row">
+      <input type="text" id="zipInput" placeholder="Enter ZIP code or city..." aria-label="Enter ZIP code or city" />
+      <button class="btn primary" onclick="fetchByZip()">Search</button>
+    </div>
 
     <ul>
-      <li><strong>Fajr:</strong>&nbsp;<span id="fajr"></span></li>
-      <li><strong>Dhuhr:</strong>&nbsp;<span id="dhuhr"></span></li>
-      <li><strong>Asr:</strong>&nbsp;<span id="asr"></span></li>
-      <li><strong>Maghrib:</strong>&nbsp;<span id="maghrib"></span></li>
-      <li><strong>Isha:</strong>&nbsp;<span id="isha"></span></li>
+      <li id="li-fajr"><strong>Fajr:</strong>&nbsp;<span id="fajr"></span></li>
+      <li id="li-dhuhr"><strong>Dhuhr:</strong>&nbsp;<span id="dhuhr"></span></li>
+      <li id="li-asr"><strong>Asr:</strong>&nbsp;<span id="asr"></span></li>
+      <li id="li-maghrib"><strong>Maghrib:</strong>&nbsp;<span id="maghrib"></span></li>
+      <li id="li-isha"><strong>Isha:</strong>&nbsp;<span id="isha"></span></li>
 
     </ul>
-    <p id="timezone" style="font-size: 0.95rem; color: #666;"></p>
-    <h1>❤️ A Verse to Heal Your Heart</h1>
+    <p id="timezone" class="muted"></p>
+    <p id="countdown" class="countdown" aria-live="polite"></p>
+    <h2 class="section-title">❤️ A Verse to Heal Your Heart</h2>
     <blockquote id="quote"></blockquote>
-    <button onclick="refreshQuote()">New Verse</button>
-    <button onclick="shareQuote()">📤 Share Verse</button>
-    <button onclick="showAyatulKursi()">📖 Ayatul Kursi</button>
+    <button class="btn" onclick="refreshQuote()">🔁 New Verse</button>
+    <button class="btn" onclick="shareQuote()">📤 Share</button>
+    <button class="btn" onclick="showAyatulKursi()">📖 Ayatul Kursi</button>
     <br />
-    <button onclick="window.open('https://salamcenter.org/wp-content/uploads/2020/09/Prayer-Guide.pdf', '_blank')">📖 How to Pray</button>
+    <button class="btn" onclick="window.open('https://salamcenter.org/wp-content/uploads/2020/09/Prayer-Guide.pdf', '_blank')">� How to Pray</button>
     <br />
-    <button onclick="openSurahPopup()">📖 The Quran</button>
+    <button class="btn" onclick="openSurahPopup()">� The Quran</button>
     <br />
-    <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+    <button class="btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
 
   </div>
-  <footer id="copyright" style="margin-top: 2rem; font-size: 0.8rem; text-align: center; color: #888;">
-  © 2025 Mohammed Zaid. All rights reserved.
-</p>
+  </main>
+  <footer id="copyright" class="app-footer">
+    © 2025 Mohammed Zaid. All rights reserved.
+  </footer>
 <script>
 
 
@@ -397,6 +182,8 @@ setInterval(() => {
   currentDhikr = (currentDhikr + 1) % dhikr.length;
 }, 5000);
 
+let countdownTimer;
+
 
 function to12Hour(time24) {
   const [hourStr, minute] = time24.split(":");
@@ -459,17 +246,13 @@ function getPrayerTimes(lat, lon, locationName = "") {
       };
       const next = getNextPrayer(prayerMap);
       if (next) {
-        const countdownEl = document.createElement("p");
-        countdownEl.style.marginTop = "1rem";
-        countdownEl.style.fontSize = "0.95rem";
-        countdownEl.style.color = "#aeea00";
-        countdownEl.style.background = "rgba(0, 0, 0, 0.5)";
-        countdownEl.style.borderRadius = "8px";
-        countdownEl.style.padding = "6px 12px";
-        countdownEl.style.display = "inline-block";
-        document.querySelector(".card").appendChild(countdownEl);
-
-        setInterval(() => {
+        const countdownEl = document.getElementById('countdown');
+        document.querySelectorAll('ul li').forEach(li => li.classList.remove('next-prayer'));
+        const idMap = { Fajr: 'li-fajr', Dhuhr: 'li-dhuhr', Asr: 'li-asr', Maghrib: 'li-maghrib', Isha: 'li-isha' };
+        const nextId = idMap[next.name];
+        if (nextId) { document.getElementById(nextId).classList.add('next-prayer'); }
+        if (countdownTimer) clearInterval(countdownTimer);
+        countdownTimer = setInterval(() => {
           const now = new Date();
           const diff = Math.max(0, Math.floor((next.time - now) / 1000));
           const hrs = Math.floor(diff / 3600);
